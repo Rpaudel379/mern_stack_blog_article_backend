@@ -1,0 +1,25 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.filterBlog = void 0;
+const filterBlog = ({ userId, title, content }) => {
+    // splits into two values seperated by = /// 404=error message
+    if (!userId) {
+        return { validation: false, message: "400=require userId" };
+    }
+    else if (!title) {
+        return { validation: false, message: "400=require title" };
+    }
+    else if (!content) {
+        return { validation: false, message: "400=require blog body" };
+    }
+    else {
+        if (title.length < 5) {
+            return { validation: false, message: "400=title must be atleat 5 chars" };
+        }
+        if (content.length < 5) {
+            return { validation: false, message: "400=body must be atleast 5 chars" };
+        }
+        return { validation: true };
+    }
+};
+exports.filterBlog = filterBlog;
