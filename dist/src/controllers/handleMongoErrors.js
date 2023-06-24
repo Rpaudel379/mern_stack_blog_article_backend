@@ -15,7 +15,7 @@ exports.default = (error) => {
     }  */
     console.log(error);
     if (error.code === 11000) {
-        return "400=username  already exists";
+        return "400=username already exists";
     }
     // Object.keys(error.errors).map((k) => console.log(k));
     if (error.message.includes("Blog validation failed")) {

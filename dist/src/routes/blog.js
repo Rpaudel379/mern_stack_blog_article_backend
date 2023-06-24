@@ -22,7 +22,8 @@ const upload = (0, multer_1.default)({ storage: storage });
 // blogRoute.post("/createblog", upload.single("image"), createBlog);
 exports.blogRoute.post("/createblog", auth_1.isLoggedIn, (0, multer_1.default)().none(), blog_1.createBlog);
 exports.blogRoute
-    .route("/:id").post(auth_1.isLoggedIn, blog_1.userBlogs)
+    .route("/:id")
+    .post(auth_1.isLoggedIn, blog_1.userBlogs)
     .patch(auth_1.isLoggedIn, (0, multer_1.default)().none(), blog_1.updateBlog)
     .delete(auth_1.isLoggedIn, blog_1.deleteBlog);
 exports.blogRoute.all("*", invalidRouteMiddleware_1.default);

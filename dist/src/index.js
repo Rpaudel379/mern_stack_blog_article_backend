@@ -17,7 +17,7 @@ dotenv_1.default.config();
 // app.use(cors());
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
-app.use((0, cors_1.default)({ origin: process.env.frontend, credentials: true }));
+app.use((0, cors_1.default)({ origin: process.env.frontend, credentials: true, allowedHeaders: 'Authorization' }));
 app.use((0, cookie_parser_1.default)());
 //? TODO disable if not sent request from API
 //? TODO disable if not sent request from API
@@ -26,6 +26,7 @@ app.get("/", (req, res) => {
     console.log(req.headers["user-agent"]);
     res.send("this is backend of the app");
 });
+// app.use(isLoggedIn);
 // route to user related requests like login, register, edit and delete
 app.use("/api/auth", (0, multer_1.default)().none(), auth_1.authRoute);
 // route to blog related request like getting all blogs, single blogs, user blogs, delete, edit
