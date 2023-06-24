@@ -8,7 +8,6 @@ import multer from "multer";
 // routes
 import { authRoute } from "@routes/auth";
 import { blogRoute } from "@routes/blog";
-import { isLoggedIn } from "@middlewares/auth";
 
 const app = express();
 dotenv.config();
@@ -16,7 +15,7 @@ dotenv.config();
 // app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors({ origin: process.env.frontend, credentials: true }));
+app.use(cors({ origin: process.env.frontend, credentials: true, allowedHeaders:'Authorization' }));
 
 app.use(cookieParser());
 //? TODO disable if not sent request from API

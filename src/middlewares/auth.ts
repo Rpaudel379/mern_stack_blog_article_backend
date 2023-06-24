@@ -19,7 +19,8 @@ export const isLoggedIn = (req: Request, res: Response, next: NextFunction) => {
       }
     );
   } else {
-    throw new Error("401=User not logged in");
+    return res.status(401).json({ message: "User not logged in" });
+    // throw new Error("401=User not logged in");
     // res.status(400).json({ validation: false, message: "User not logged in" });
   }
 };
