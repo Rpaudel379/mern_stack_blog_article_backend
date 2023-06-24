@@ -29,7 +29,8 @@ const upload = multer({ storage: storage });
 blogRoute.post("/createblog", isLoggedIn, multer().none(), createBlog);
 
 blogRoute
-  .route("/:id").post(isLoggedIn, userBlogs)
+  .route("/:id")
+  .post(isLoggedIn, userBlogs)
   .patch(isLoggedIn, multer().none(), updateBlog)
   .delete(isLoggedIn, deleteBlog);
 

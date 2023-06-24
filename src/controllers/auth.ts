@@ -32,12 +32,13 @@ export const handleLogin = async (
 
     const token = createToken(user!._id);
 
-    res.cookie("auth", token, {
+    /*  res.cookie("auth", token, {
       httpOnly: true,
       maxAge: 2 * 24 * 60 * 60 * 1000,
       sameSite: "none",
       secure: true,
-    });
+      
+    }); */
     res.status(202).send({
       message: "logged in succesfully, now redirecting",
       success: true,

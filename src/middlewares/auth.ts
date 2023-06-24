@@ -2,7 +2,8 @@ import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
 
 export const isLoggedIn = (req: Request, res: Response, next: NextFunction) => {
-  const token = req.cookies.auth;
+  // const token = req.cookies.auth;
+  const token = req.headers.authorization?.split(" ")[1];
 
   if (token) {
     jwt.verify(
@@ -10,7 +11,7 @@ export const isLoggedIn = (req: Request, res: Response, next: NextFunction) => {
       process.env.JWT_KEY as string,
       async (err: any, decodedToken: any) => {
         if (err) {
-          throw new Error("401=invalid token");
+          return res.status(401).json({ message: "Invalid Token" });
         } else {
           res.locals.user = decodedToken;
           next();

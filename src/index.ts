@@ -8,6 +8,7 @@ import multer from "multer";
 // routes
 import { authRoute } from "@routes/auth";
 import { blogRoute } from "@routes/blog";
+import { isLoggedIn } from "@middlewares/auth";
 
 const app = express();
 dotenv.config();
@@ -29,6 +30,8 @@ app.get("/", (req, res) => {
   res.send("this is backend of the app");
 });
 
+// app.use(isLoggedIn);
+
 // route to user related requests like login, register, edit and delete
 app.use("/api/auth", multer().none(), authRoute);
 
@@ -38,9 +41,8 @@ app.use("/api/blog", blogRoute);
 const port = process.env.PORT;
 
 mongoose.connect(process.env.MONGO_URL!).then(() => {
-  
   console.log("database connected");
-  
+
   app.listen(port, () => {
     console.log(`Server running on port ${port}`);
   });
@@ -53,4 +55,4 @@ mongoose.connect(process.env.MONGO_URL!).then(() => {
 // const cred = Buffer.from(enco as any, "base64").toString("ascii");
 // console.log(cred);
 
-export default app
+export default app;
