@@ -15,7 +15,7 @@ dotenv.config();
 // app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors({ origin: process.env.frontend, credentials: true, allowedHeaders:'Authorization' }));
+app.use(cors());
 
 app.use(cookieParser());
 //? TODO disable if not sent request from API
